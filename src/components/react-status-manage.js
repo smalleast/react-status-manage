@@ -16,6 +16,16 @@ export default class extends PureComponent {
   };
 
   /*===properties end===*/
+  _bindChildren() {
+    const {children, status, statusList} = this.props;
+    let childHtml =  children[0];
+    children.map((child, index) => {
+      if (status === statusList[index]) {
+        childHtml = child;
+      }
+    });
+    return childHtml;
+  }
 
   render() {
     const {className, status, statusList, children, ...props} = this.props;
@@ -26,9 +36,7 @@ export default class extends PureComponent {
         {...props}
       >
         {
-          children.map((child, index) => {
-            return (status === statusList[index] || 'default' === statusList[index]) && child;
-          })
+          this._bindChildren()
         }
       </div>
     );
