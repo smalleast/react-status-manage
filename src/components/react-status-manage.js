@@ -27,7 +27,7 @@ export default class extends PureComponent {
       >
         {
           children.map((child, index) => {
-            return status === statusList[index] && child;
+            return (status === statusList[index] || 'default' === statusList[index]) && child;
           })
         }
       </div>
